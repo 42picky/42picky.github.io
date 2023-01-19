@@ -1,0 +1,12 @@
+cairosvg
+markdown-include
+mkdocs
+mkdocs-autorefs
+mkdocs-git-revision-date-localized-plugin
+mkdocs-material
+mkdocs-material-extensions
+mkdocstrings
+mkdocstrings-python
+pillow
+pymdown-extensions
+slugify
