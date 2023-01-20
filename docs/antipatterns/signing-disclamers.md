@@ -1,3 +1,8 @@
+---
+tags:
+  - hostile-architecture
+---
+
 # Signing disclaimers
 
 One very effective way to **deter** people from using your software is to request

@@ -37,6 +37,8 @@ plugins:
   - search
   - social
   - mkdocstrings
+  - tags:
+      tags_file: tags.md
 
 markdown_extensions:
   - pymdownx.highlight:
