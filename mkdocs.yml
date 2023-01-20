@@ -1,6 +1,8 @@
 site_name: 42picky
 site_url: https://42picky.readthedocs.io/
 repo_url: https://github.com/42picky/42picky.github.io
+copyright: Copyright &copy; 2011 - 2023 Sorin Sbarnea
+
 
 theme:
   name: "material"
@@ -10,6 +12,7 @@ theme:
     - content.code.copy
     - content.action.edit
     - navigation.sections
+    # - navigation.footer
   palette:
     - media: "(prefers-color-scheme: light)"
       primary: amber
@@ -27,20 +30,30 @@ theme:
         icon: material/brightness-4
         name: Switch to light mode
 extra:
+  generator: false
   social:
-    - icon: fontawesome/brands/github-alt
-      link: https://github.com/ansible/devtools
+    - icon: fontawesome/brands/github
+      link: https://github.com/42picky/42picky.github.io
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/42picky
 # nav:
 #   - home: index.md
 
 plugins:
   - search
+  - autorefs
   - social
   - mkdocstrings
   - tags:
       tags_file: tags.md
 
+extra_css:
+  - stylesheets/extra.css
+
 markdown_extensions:
+  - def_list
+  - toc:
+      permalink: True
   - pymdownx.highlight:
       anchor_linenums: true
   - pymdownx.inlinehilite
