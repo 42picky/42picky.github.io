@@ -9,10 +9,12 @@ worst practices that hope to become a book in the future.
 - Keeping local testing close to CI/CD pipelines
 
 # Avoid and reduce
+
 - Contribution friction
 - Using non-standard tools, even if cool
 
 # Most popular python tools
+
 - tox
 - pre-commit to orchestrate linters
 - flake8

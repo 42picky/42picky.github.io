@@ -1,8 +1,8 @@
+---
 site_name: 42picky
 site_url: https://42picky.readthedocs.io/
 repo_url: https://github.com/42picky/42picky.github.io
 copyright: Copyright &copy; 2011 - 2023 Sorin Sbarnea
-
 
 theme:
   name: "material"
@@ -44,6 +44,7 @@ plugins:
   - autorefs
   - social
   - mkdocstrings
+  - git-authors
   - tags:
       tags_file: tags.md
 
@@ -53,7 +54,7 @@ extra_css:
 markdown_extensions:
   - def_list
   - toc:
-      permalink: True
+      permalink: true
   - pymdownx.highlight:
       anchor_linenums: true
   - pymdownx.inlinehilite

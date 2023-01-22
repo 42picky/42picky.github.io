@@ -30,6 +30,5 @@ To avoid the problem, be sure that you select the first option for requiring app
 
 ![img](../assets/images/ss/github-run-config.png)
 
-
 [1]: https://docs.github.com/en/codespaces/managing-codespaces-for-your-organization/managing-encrypted-secrets-for-your-repository-and-organization-for-github-codespaces
 [2]: https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment
