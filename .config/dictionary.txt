@@ -5,6 +5,7 @@ autofix
 autorefs
 autoupdate
 cairosvg
+callouts
 codespell
 facelessuser
 fontawesome
@@ -17,6 +18,7 @@ pylint
 pymdown
 pymdownx
 pyproject
+ssbarnea
 superfences
 tomli
 unattended

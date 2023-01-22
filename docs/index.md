@@ -2,8 +2,8 @@
 
 ## What is 42picky?
 
-42picky hosts a collection of small articles about software development's best and
-worst practices that hope to become a book in the future.
+42picky hosts a collection of small articles about software development's best
+and worst practices that hope to become a book in the future.
 
 - Embrace KISS and avoid NIH syndrome
 - Keeping local testing close to CI/CD pipelines
