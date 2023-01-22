@@ -1,5 +1,3 @@
-
-
-em {
-    color: grey;
+.md-typeset em {
+  color: var(--md-accent-fg-color);
 }

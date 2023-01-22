@@ -54,8 +54,8 @@ A clear example here is the line length limit. Tools like [black][1] have a
 default value of 88 characters, and you should not change this to any other
 value.
 
->> If you value contributions, keep in mind that consistency between
->> projects is more important than your personal preferences.
+> > If you value contributions, keep in mind that consistency between
+> > projects is more important than your personal preferences.
 
 The less you diverge from defaults, the easier it will be for others to
 contribute to your project.
