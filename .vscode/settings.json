@@ -11,5 +11,6 @@
   },
   "files.exclude": {
     "**/site": true
-  }
+  },
+  "prettier.enable": true
 }
