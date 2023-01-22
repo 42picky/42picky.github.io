@@ -1,13 +1,13 @@
 {
   "cSpell.customDictionaries": {
-    "project-words": {
-      "name": "project-words",
-      "path": "${workspaceRoot}/.config/dictionary.txt",
-      "description": "Words used in this project",
-      "addWords": true
-    },
     "custom": true, // Enable the `custom` dictionary
-    "internal-terms": false // Disable the `internal-terms` dictionary
+    "internal-terms": false, // Disable the `internal-terms` dictionary
+    "project-words": {
+      "addWords": true,
+      "description": "Words used in this project",
+      "name": "project-words",
+      "path": "${workspaceRoot}/.config/dictionary.txt"
+    }
   },
   "files.exclude": {
     "**/site": true
