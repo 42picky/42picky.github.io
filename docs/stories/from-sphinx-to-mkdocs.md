@@ -1,4 +1,5 @@
 <!-- cspell:ignore dirtyreload squidfunk jazzband pawamoy -->
+
 # From Sphinx to Mkdocs
 
 !!! note
@@ -193,13 +194,13 @@ encouraged (or supported?).
 
 Guess what, when building a single site, your master mkdocs.yml file would
 clearly be at an upper level than the child ones, so all the paths used by
-plugins relative to the configuration file will get broken. Also, the same issue will
-happen to `docs_path` which now... you have more than one, as your documentation
-files spreads across multiple places.
+plugins relative to the configuration file will get broken. Also, the same issue
+will happen to `docs_path` which now... you have more than one, as your
+documentation files spreads across multiple places.
 
 This journey is still in progress, so over the following weeks, I will have to
-update the current document, likely to even rewrite it. Hopefully, it would prove
-to be a good experience. For now is clearly interesting and challenging.
+update the current document, likely to even rewrite it. Hopefully, it would
+prove to be a good experience. For now is clearly interesting and challenging.
 
 [mkdocs]: https://www.mkdocs.org/
 [mkdocstrings]: https://mkdocstrings.github.io/
