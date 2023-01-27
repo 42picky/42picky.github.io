@@ -4,6 +4,7 @@ site_url: https://42picky.readthedocs.io/
 repo_url: https://github.com/42picky/42picky.github.io
 edit_uri: https://github.com/42picky/42picky.github.io/blob/main/docs/
 copyright: Copyright &copy; 2011 - 2023 Sorin Sbarnea
+strict: true
 
 theme:
   name: "material"
@@ -57,13 +58,15 @@ extra_css:
   - stylesheets/extra.css
 
 markdown_extensions:
+  - admonition
   - def_list
   - toc:
       permalink: true
   - pymdownx.highlight:
       anchor_linenums: true
   - pymdownx.inlinehilite
-  - pymdownx.snippets
+  - pymdownx.snippets:
+      check_paths: true
   - pymdownx.superfences
   - pymdownx.magiclink:
       repo_url_shortener: true
