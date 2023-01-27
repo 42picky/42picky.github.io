@@ -188,7 +188,7 @@ fixable as it might touch the core concepts on which [mkdocs] is built.
 
 It seems that mkdocs does not provide plugin authors with a way to get the path
 of the current document and instead it provides two paths, the
-`docs_path: docs/` and the path configuration path. Not only this but it states
+`docs_path: docs/` and the configuration path. Not only this but it states
 clearly that inclusion of files from outside the documentation directory is not
 encouraged (or supported?).
 
