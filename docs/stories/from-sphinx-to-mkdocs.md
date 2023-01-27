@@ -182,7 +182,7 @@ files into markdown code snippets.
 
 While there are at least two solutions for including content with [mkdocs], they
 both are problematic because some decisions that were made regarding how
-relative paths are computer, something that breaks badly when you try to build a
+relative paths are computed, something that breaks badly when you try to build a
 single site out of multiple repositories. I am even wondering if this issue is
 fixable as it might touch the core concepts on which [mkdocs] is built.
 
