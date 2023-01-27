@@ -6,13 +6,13 @@
 
     This document is a work in progress, so expect to be updated as my journey continues.
 
-I been seeing the Sphinx documentation ecosystem aging for years, with fewer
-people wanting to contribute to the system each year. I cannot blame them as the
-Sphinx is as old as the real Sphinx and it covered a huge number of use cases,
-some of them no longer being so relevant.
+I have been seeing the Sphinx documentation ecosystem aging for years, with
+fewer people wanting to contribute to the system each year. I cannot blame them
+as the Sphinx is as old as the real Sphinx and it covered a huge number of use
+cases, some of them no longer being so relevant.
 
-One first move was to start using MyST parser and convert most of the
-documentation from ReST to markdown.
+One first move was to start using [MyST] parser and convert most of the
+documentation from [ReST] to [markdown].
 
 Most potential contributors are likely to know Markdown instead of ReST.
 Markdown also renders nicely even on GitHub, without even needing you to compile
@@ -25,11 +25,11 @@ come without its own set of challenges.
 
 ### One dependency too many
 
-Soon after starting to use mkdocs, I found that the list of python packages
+Soon after starting to use [mkdocs], I found that the list of python packages
 needed to build documentation did grow considerably, reaching almost the same
 level as with Sphinx.
 
-Lets take a look at those that I identified in the last few weeks, while
+Let's take a look at those that I identified in the last few weeks while
 converting several python based projects to mkdocs, using the most popular theme
 [mkdocs-material][].
 
@@ -41,7 +41,7 @@ classDef plugin fill:#BCF,stroke:#BCF,color:#000;
 classDef package fill:#AAA,stroke:#AAA,color:#000;
 
 
-mkdocs --> markdown-exec;
+mkdocs --> markdown-exec --> pygments-ansi-color;
 mkdocs --> markdown-include;
 mkdocs --> mkdocs-autorefs;
 mkdocs --> mkdocs-exclude;
@@ -87,11 +87,11 @@ click pymdown-extensions href "https://facelessuser.github.io/pymdown-extensions
 
 ### There will be bugs to fix
 
-To put is this way, I already raised pull request to fix bugs in
+To put it this way, I already raised several pull requests:
 
-- fixes proposed to mkdocstrings and mkdocstrings-python the first day
-- bug reported to Spotify mkdocs-monorepo-plugin but the projects seem to have a
-  silent community
+- fixes proposed to [mkdocstrings] and [mkdocstrings-python]
+- bug reported to Spotify [mkdocs-monorepo-plugin] but the projects seem to have
+  a silent community
 - Bug reported again include and snippets plugins as not working with monorepos,
   got a "not my problem" reply.
 
@@ -99,10 +99,33 @@ To put is this way, I already raised pull request to fix bugs in
 
 While the material theme is probably the best theme I found for open-source
 projects, one should also be fully aware that some of the features are limited
-to insiders version, a premium offering that allows the project to stay alive
-and thrive. One notable mention is that "blog" feature seems to be for insiders
-only, for now. The others seem reasonable to me, they were cool features but not
-really what I would call essentials.
+to the "insiders" version, a premium offering that allows the project to stay
+alive and thrive. One notable mention is that the "blog" feature seems to be for
+insiders only, for now. The others seem reasonable to me, they were cool
+features but not really what I would call essentials.
+
+### Rendering ANSI output from external commands
+
+You need the following steps
+
+- Install [pygments-ansi-color] and [markdown-exec] packages
+- Add `markdown-exec` to `plugins` in `mkdocs.yml`
+- Add `extra_css` for stylesheet like
+  [this](https://github.com/42picky/42picky.github.io/blob/main/docs/stylesheets/extra.css)
+  for the colors.
+- Use `ansi` language for code blocks or `result="ansi"` for markdown-exec.
+
+#### ANSI content from within markdown file
+
+```ansi
+The next word is[1;31m red[0m.
+```
+
+#### ANSI from external commands
+
+```bash exec="1" result="ansi"
+./tools/ansi-test.sh
+```
 
 ### Plugins are not always maintained
 
@@ -112,9 +135,9 @@ really what I would call essentials.
   checking its issue tracker and activity makes me believe that it might not
   have a community around it.
 
-## Performance
+### Performance
 
-While mkdocs was very fast on my initial tests, I did start to spot it as
+While [mkdocs] was very fast on my initial tests, I did start to spot it as
 becoming slowing and slower. Luckily it seems that there is `--dirtyreload`
 which can be used to speed up the process.
 
@@ -124,7 +147,7 @@ While I tried multiple approaches for building a single side out of multiple
 repositories using mkdocs, I still failed to find a solution that would work and
 I think that I spotted something that might be the Achilles heel of mkdocs.
 
-mkdocs documents use only relative paths and that makes sense to me. Still, it
+[mkdocs] documents use only relative paths and that makes sense to me. Still, it
 seems that paths are never relative to the current markdown file, but instead
 they are relative to either the `mkdocs.yml` or the `docs_dir`, a folder hosting
 your documentation, which cannot be the root of the project.
@@ -136,24 +159,23 @@ multiple different folders. You will no longer have a single `docs_dir`.
 As sooner or later you will want to include some examples in your documentation
 that are taken from standalone files, you will discover new problems:
 
-- Your include no longer works when building the parent site because all
-  inclusion plugins to look for paths relative to `mkdocs.yml` file. And your
-  parent `mkdocs.yml` file will always be at a different level than the child
-  one.
-- mkdocs seems to be quite opinionated on not allowing your to reference files
+- Your includes no longer work when building the parent site because all
+  inclusion plugins use paths relative to the `mkdocs.yml` file. And your parent
+  `mkdocs.yml` file will always be at a different level than the child one.
+- [mkdocs] seems to be quite opinionated on not allowing your to reference files
   from outside your `docs_dir`.
 
 I need to mention that I only tried [markdown-include] and [snippets] plugins so
 far for inclusion. Both broke on a multi-site setup.
 
 I am fully aware that I could be [holding it wrongly][1] and that is only my
-lack of knowledge for failing to build a multi-site documentation. I guess that
-I need to dig more to find the first success example of such compilation.
+lack of knowledge for failing to build multi-site documentation. I guess that I
+need to dig more to find the first successful example of such a compilation.
 
 ## Community interaction
 
 - @squidfunk the author of [mkdocs-material] is amazing and does a very good job
-  in helping people with
+  of helping people with
   [answers](https://github.com/squidfunk/mkdocs-material/discussions)
 - @pawamoy the author of [mkdocstrings] is also amazing and open to suggestions.
   It was a pleasure to interact with him and get several fixes into
@@ -164,9 +186,9 @@ I need to dig more to find the first success example of such compilation.
   about the fact that there is no single GitHub organization hosting [mkdocs]
   projects, so most plugins are under personal GitHub accounts. This does not
   ensure the long-term longevity of these projects. Original authors might have
-  their priorities changed and you end-up with an ecosystem of abandoned
+  their priorities changed and you end up with an ecosystem of abandoned
   projects and forks. I have seen this happening many times with other similar
-  ecosystems, enough to suggest mkdocs team to do something about this.
+  ecosystems, enough to suggest [mkdocs team] do something about this.
 
 It is perfectly sane to assume that your role with a project is not permanent
 and if you care for your creation to survive the test of time, you better plan
@@ -186,21 +208,21 @@ relative paths are computed, something that breaks badly when you try to build a
 single site out of multiple repositories. I am even wondering if this issue is
 fixable as it might touch the core concepts on which [mkdocs] is built.
 
-It seems that mkdocs does not provide plugin authors with a way to get the path
-of the current document and instead it provides two paths, the
+It seems that [mkdocs] does not provide plugin authors with a way to get the
+path of the current document. Instead, it provides two paths, the
 `docs_path: docs/` and the configuration path. Not only this but it states
-clearly that inclusion of files from outside the documentation directory is not
-encouraged (or supported?).
+clearly that the inclusion of files from outside the documentation directory is
+not encouraged (or supported?).
 
-Guess what, when building a single site, your master mkdocs.yml file would
-clearly be at an upper level than the child ones, so all the paths used by
-plugins relative to the configuration file will get broken. Also, the same issue
-will happen to `docs_path` which now... you have more than one, as your
-documentation files spreads across multiple places.
+Guess what, when building a single site, your master mkdocs.yml file would be at
+an upper level than the child ones, so all the paths used by plugins relative to
+the configuration file will get broken. Also, the same issue will happen to
+`docs_path` which now... you have more than one, as your documentation files are
+spread across multiple places.
 
 This journey is still in progress, so over the following weeks, I will have to
 update the current document, likely to even rewrite it. Hopefully, it would
-prove to be a good experience. For now is clearly interesting and challenging.
+prove to be a good experience. For now, it is interesting and challenging.
 
 [mkdocs]: https://www.mkdocs.org/
 [mkdocstrings]: https://mkdocstrings.github.io/
@@ -212,3 +234,8 @@ prove to be a good experience. For now is clearly interesting and challenging.
   https://facelessuser.github.io/pymdown-extensions/extensions/snippets/
 [1]:
   https://www.urbandictionary.com/define.php?term=You%27re%20Holding%20It%20Wrong
+[pygments-ansi-color]: https://github.com/chriskuehl/pygments-ansi-color
+[myst]: https://myst-parser.readthedocs.io/en/latest/
+[rest]: https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html
+[markdown]: https://en.wikipedia.org/wiki/Markdown
+[mkdocs team]: https://www.mkdocs.org/about/release-notes/#maintenance-team

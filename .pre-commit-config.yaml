@@ -13,7 +13,8 @@ exclude: >
   (?x)^(
     .config/dictionary.txt|
     .*\.svg|
-    ./.config/requirements.txt
+    ./.config/requirements.txt|
+    ./tools/ansi-test.sh
   )$
 repos:
   - repo: meta

@@ -1,4 +1,5 @@
 cairosvg
+markdown-exec
 markdown-include
 mkdocs
 mkdocs-autorefs
@@ -9,5 +10,6 @@ mkdocs-material-extensions
 mkdocstrings
 mkdocstrings-python
 pillow
+pygments-ansi-color
 pymdown-extensions
 slugify
