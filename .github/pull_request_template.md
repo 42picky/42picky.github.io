@@ -1,1 +1,1 @@
-<!-- If this is fixing an exsting bug add "Fixed: #123" -->
+<!-- If this is fixing an existing bug add "Fixed: #123" -->
