@@ -6,6 +6,9 @@ edit_uri: https://github.com/42picky/42picky.github.io/blob/main/docs/
 copyright: Copyright &copy; 2011 - 2023 Sorin Sbarnea
 strict: true
 
+extra_css:
+  - stylesheets/extra.css
+
 theme:
   name: "material"
   logo: assets/images/logo.svg
@@ -21,7 +24,6 @@ theme:
       primary: amber
       accent: "deep orange"
       scheme: default
-      logos: assets/images/logo.svg
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
@@ -46,6 +48,7 @@ plugins:
   - search
   - autorefs
   - social
+  - markdown-exec
   - mkdocstrings
   - git-authors:
       exclude:
@@ -53,9 +56,6 @@ plugins:
         - tags.md
   - tags:
       tags_file: tags.md
-
-extra_css:
-  - stylesheets/extra.css
 
 markdown_extensions:
   - admonition
@@ -80,6 +80,7 @@ markdown_extensions:
       base_path: docs
   - pymdownx.superfences:
       custom_fences:
+        # markdown_exec adds its own dynamically
         - name: mermaid
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format

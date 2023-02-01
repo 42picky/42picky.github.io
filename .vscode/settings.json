@@ -9,8 +9,11 @@
       "path": "${workspaceRoot}/.config/dictionary.txt"
     }
   },
+  "editor.formatOnSave": true,
+  "editor.formatOnType": true,
   "files.exclude": {
     "**/site": true
   },
-  "prettier.enable": true
+  "prettier.enable": true,
+  "prettier.proseWrap": "always"
 }
