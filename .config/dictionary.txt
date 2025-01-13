@@ -1,4 +1,7 @@
 Exupéry
+PYTHONBREAKPOINT
+PYTHONIOENCODING
+PYTHONPYCACHEPREFIX
 Sbarnea
 Sorin
 autofix
@@ -7,6 +10,7 @@ autoupdate
 cairosvg
 callouts
 codespell
+devel
 facelessuser
 fontawesome
 inlinehilite

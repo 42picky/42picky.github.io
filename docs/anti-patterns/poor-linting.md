@@ -13,7 +13,7 @@ to run the linting locally and get the same results as the CI pipeline.
 ## Each linter being called manually
 
 If you expect that the contributor will have to call more than one command for
-linting the project, you are already failed the [KISS](../../principles/kiss)
+linting the project, you are already failed the [KISS](../principles/kiss.md)
 part.
 
 If you need to document how to run the linters in more than a sentence, you

@@ -8,21 +8,23 @@ ci:
     for more information, see https://pre-commit.ci
   skip:
     # https://github.com/pre-commit-ci/issues/issues/55
-    - pip-compile
+    - deps
+    - lock
 exclude: >
   (?x)^(
     .config/dictionary.txt|
     .*\.svg|
-    ./.config/requirements.txt|
     ./tools/ansi-test.sh
   )$
+default_language_version:
+  python: "3.13"
 repos:
   - repo: meta
     hooks:
       - id: check-useless-excludes
-  - repo: https://github.com/pre-commit/mirrors-prettier
+  - repo: https://github.com/rbubley/mirrors-prettier
     # keep it before yamllint
-    rev: v3.0.0-alpha.4
+    rev: v3.4.2
     hooks:
       - id: prettier
         always_run: true
@@ -31,18 +33,18 @@ repos:
           - prettier-plugin-toml
           - prettier-plugin-sort-json
   - repo: https://github.com/streetsidesoftware/cspell-cli
-    rev: v6.17.1
+    rev: v8.17.0
     hooks:
       - id: cspell
         # entry: codespell --relative
         args: [--relative, --no-progress, --no-summary]
         name: Spell check with cspell
   - repo: https://github.com/sirosen/check-jsonschema
-    rev: 0.20.0
+    rev: 0.31.0
     hooks:
       - id: check-github-workflows
   - repo: https://github.com/pre-commit/pre-commit-hooks.git
-    rev: v4.4.0
+    rev: v5.0.0
     hooks:
       - id: end-of-file-fixer
       - id: trailing-whitespace
@@ -53,31 +55,35 @@ repos:
       - id: debug-statements
         language_version: python3
   - repo: https://github.com/codespell-project/codespell
-    rev: v2.2.2
+    rev: v2.3.0
     hooks:
       - id: codespell
         additional_dependencies:
           - tomli
   - repo: https://github.com/adrienverge/yamllint.git
-    rev: v1.29.0
+    rev: v1.35.1
     hooks:
       - id: yamllint
         files: \.(yaml|yml)$
         types: [file, yaml]
         entry: yamllint --strict
-  - repo: https://github.com/jazzband/pip-tools
-    rev: 6.12.1
+  - repo: https://github.com/pappasam/toml-sort
+    rev: v0.24.2
     hooks:
-      - id: pip-compile
-        name: deps
-        entry: >
-          pip-compile --resolver=backtracking -q --no-annotate
-          --output-file=.config/requirements.txt
-          --strip-extras .config/requirements.in
+      - id: toml-sort-fix
+  - repo: local
+    hooks:
+      - id: lock
+        name: Check constraints files and requirements
         language: python
-        files: ^.config\/requirements.*$
-        alias: deps
-        language_version: "3.9"
-        always_run: true
+        entry: python3 -m uv pip compile -q --all-extras --output-file=.config/constraints.txt pyproject.toml
+        pass_filenames: false
         additional_dependencies:
-          - pip>=22.3.1
+          - uv>=0.4.3
+      - id: deps
+        name: Check constraints files and requirements
+        language: python
+        entry: python3 -m uv pip compile --upgrade -q --all-extras --output-file=.config/constraints.txt pyproject.toml
+        pass_filenames: false
+        additional_dependencies:
+          - uv>=0.4.3

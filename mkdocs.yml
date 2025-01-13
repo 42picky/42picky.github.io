@@ -3,7 +3,7 @@ site_name: 42picky
 site_url: https://42picky.readthedocs.io/
 repo_url: https://github.com/42picky/42picky.github.io
 edit_uri: https://github.com/42picky/42picky.github.io/blob/main/docs/
-copyright: Copyright &copy; 2011 - 2023 Sorin Sbarnea
+copyright: Copyright &copy; Sorin Sbarnea
 strict: true
 
 extra_css:

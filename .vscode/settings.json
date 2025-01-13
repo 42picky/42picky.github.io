@@ -15,5 +15,6 @@
     "**/site": true
   },
   "prettier.enable": true,
-  "prettier.proseWrap": "always"
+  "prettier.proseWrap": "always",
+  "cSpell.diagnosticLevel": "Error"
 }
