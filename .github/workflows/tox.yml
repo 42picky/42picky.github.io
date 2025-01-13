@@ -1,0 +1,40 @@
+---
+name: tox
+
+on:
+  push:
+    branches:
+      - "main"
+  pull_request:
+    branches:
+      - "main"
+  release:
+    types: [published]
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_call:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${ github.event_name }-${{ github.event.pull_request.number || github.sha }}
+  cancel-in-progress: ${{ startsWith(github.ref, 'refs/pull/') }}
+
+permissions:
+  checks: read
+  packages: write
+  pull-requests: write # tox/check jobs
+  contents: write # push job to update release notes
+  id-token: write # tox/check job
+
+jobs:
+  tox:
+    uses: ansible/team-devtools/.github/workflows/tox.yml@main
+    with:
+      # run_pre: ./tools/test-setup.sh
+      default_python: "3.13" # min version, for 'lint' in particular
+      skip_explode: 1
+      jobs_producing_coverage: 0
+      other_names: |
+        docs
+        lint
+    secrets: inherit # needed for logging to the ghcr.io registry
