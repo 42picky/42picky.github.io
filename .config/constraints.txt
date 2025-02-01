@@ -38,7 +38,7 @@ platformdirs==4.3.6       # via mkdocs-get-deps, mkdocstrings
 pycparser==2.22           # via cffi
 pygments==2.19.1          # via mkdocs-material, pygments-ansi-color
 pygments-ansi-color==0.3.0  # via 42picky (pyproject.toml)
-pymdown-extensions==10.14  # via markdown-exec, mkdocs-material, mkdocstrings, 42picky (pyproject.toml)
+pymdown-extensions==10.14.2  # via markdown-exec, mkdocs-material, mkdocstrings, 42picky (pyproject.toml)
 python-dateutil==2.9.0.post0  # via ghp-import
 pytz==2024.2              # via mkdocs-git-revision-date-localized-plugin
 pyyaml==6.0.2             # via mkdocs, mkdocs-get-deps, pymdown-extensions, pyyaml-env-tag
