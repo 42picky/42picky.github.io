@@ -13,7 +13,7 @@ defusedxml==0.7.1         # via cairosvg
 ghp-import==2.1.0         # via mkdocs
 gitdb==4.0.12             # via gitpython
 gitpython==3.1.44         # via mkdocs-git-revision-date-localized-plugin
-griffe==1.5.4             # via mkdocstrings-python
+griffe==1.7.1             # via mkdocstrings-python
 idna==3.10                # via requests
 jinja2==3.1.5             # via mkdocs, mkdocs-material, mkdocstrings
 markdown==3.7             # via markdown-include, mkdocs, mkdocs-autorefs, mkdocs-material, mkdocstrings, pymdown-extensions
