@@ -54,8 +54,7 @@ plugins:
       exclude:
         - index.md
         - tags.md
-  - tags:
-      tags_file: tags.md
+  - tags
 
 markdown_extensions:
   - admonition
