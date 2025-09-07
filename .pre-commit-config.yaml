@@ -1,22 +1,27 @@
 ---
+# cspell: ignore gitmoji
 ci:
   # We rely on renovate to update it but there is no way to fully disable it
   # https://github.com/pre-commit-ci/issues/issues/83
   autoupdate_schedule: quarterly
   skip:
+    - uv-lock
     - renovate-config-validator # container limits
-exclude: >
-  (?x)^(
-    .config/dictionary.txt|
-    .*\.svg|
-    ./tools/ansi-test.sh
-  )$
 repos:
   - repo: meta
     hooks:
       - id: check-useless-excludes
+  - repo: https://github.com/commitizen-tools/commitizen
+    rev: v4.8.4
+    hooks:
+      - id: commitizen
+        additional_dependencies:
+          - cz-conventional-gitmoji
+      - id: commitizen-branch
+        stages:
+          - pre-push
   - repo: https://github.com/astral-sh/uv-pre-commit
-    rev: 0.8.14
+    rev: 0.8.15
     hooks:
       - id: uv-sync
       - id: uv-lock
@@ -24,41 +29,45 @@ repos:
         alias: deps
         args: ["--upgrade"]
         stages: [manual]
+      - id: uv-lock
+        alias: lock
   - repo: https://github.com/renovatebot/pre-commit-hooks
-    rev: 41.91.1
+    rev: 41.97.7
     hooks:
       - id: renovate-config-validator
         alias: renovate
         args: [--strict]
-  - repo: https://github.com/rbubley/mirrors-prettier
-    # keep it before yamllint
-    rev: v3.6.2
+  - repo: https://github.com/biomejs/pre-commit
+    rev: "v2.2.3"
     hooks:
-      - id: prettier
-        always_run: true
-        additional_dependencies:
-          - prettier
-          - prettier-plugin-toml
-          - prettier-plugin-sort-json
+      - id: biome-check
+        name: biome
+        alias: biome
+        args: [--unsafe]
   - repo: https://github.com/codespell-project/codespell
     rev: v2.4.1
     hooks:
       - id: codespell
         additional_dependencies: ["tomli>=2.2.1; python_version<'3.11'"]
   - repo: https://github.com/streetsidesoftware/cspell-cli
-    rev: v8.17.0
+    rev: v9.2.0
     hooks:
       - id: cspell
+        name: cspell
         # entry: codespell --relative
         args: [--relative, --no-progress, --no-summary]
-        name: Spell check with cspell
   - repo: https://github.com/sirosen/check-jsonschema
-    rev: 0.31.0
+    rev: 0.33.3
     hooks:
       - id: check-github-workflows
   - repo: https://github.com/pre-commit/pre-commit-hooks.git
     rev: v6.0.0
     hooks:
+      - id: check-added-large-files
+      - id: check-merge-conflict
+      - id: check-symlinks
+      - id: debug-statements
+      - id: detect-private-key
       - id: end-of-file-fixer
       - id: trailing-whitespace
       - id: mixed-line-ending
@@ -73,7 +82,7 @@ repos:
       - id: toml-sort-fix
         alias: toml
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.12.11
+    rev: v0.12.12
     hooks:
       - id: ruff-format
         alias: ruff

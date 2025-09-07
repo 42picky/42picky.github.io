@@ -4,10 +4,7 @@
 build-backend = "setuptools.build_meta"
 requires = [
   "setuptools >= 65.3.0", # required by pyproject+setuptools_scm integration and editable installs
-  "setuptools_scm[toml] >= 7.0.5", # required for "no-local-version" scheme
-  "tox-uv",
-  "tox>=4.30",
-  "tox-extra>=2.1"
+  "setuptools_scm[toml] >= 7.0.5" # required for "no-local-version" scheme
 ]
 
 [dependency-groups]
@@ -52,12 +49,10 @@ env_list = [
   "deps"
 ]
 isolated_build = true
-min_version = "4.6.3"
 requires = [
   "tox>=4.28.4",
-  "tox-extra >= 2.0.1",
-  "tox-uv >= 1.28.0",
-  "setuptools >= 65.3.0" # editable installs
+  "tox-extra >= 2.1",
+  "tox-uv >= 1.28.0"
 ]
 
 [tool.tox.env.deps]
@@ -74,7 +69,7 @@ skip_install = true
 
 [tool.tox.env.docs]
 commands = [
-  ["{env_python}", "-m", "mkdocs", {default = ["build", "--strict", "--site-dir=_readthedocs/html/"], extend = true, replace = "posargs"}]
+  ["mkdocs", {default = ["build", "--strict", "--site-dir=_readthedocs/html/"], extend = true, replace = "posargs"}]
 ]
 description = "Builds docs"
 groups = ["docs"]
@@ -93,8 +88,11 @@ skip_install = true
 description = "Run the tests under {base_python}"
 package = "editable"
 pass_env = [
+  "CI",
   "CURL_CA_BUNDLE", # https proxies, https://github.com/tox-dev/tox/issues/1437
   "FORCE_COLOR",
+  "GH_*",
+  "GITHUB_*",
   "HOME",
   "HOMEPATH",
   "LANG",
@@ -105,25 +103,17 @@ pass_env = [
   "PY_COLORS",
   "PRE_COMMIT_HOME",
   "PROGRAMDATA",
+  "REQUESTS_CA_BUNDLE",
   "RUFF_OUTPUT_FORMAT",
   "RTD_TOKEN",
   "REQUESTS_CA_BUNDLE", # https proxies
   "SETUPTOOLS_SCM_DEBUG",
+  "SSH_AUTH_SOCK",
   "SSL_CERT_FILE", # https proxies
-  "SSH_AUTH_SOCK", # may be needed by git
   "UV_*"
 ]
 
 [tool.tox.env_run_base.set_env]
-# Disable colors until markdown-exec supports it:
-# https://github.com/pawamoy/markdown-exec/issues/11
-# "NO_COLOR = 1",
-# "TERM = dump",
-# https://squidfunk.github.io/mkdocs-material/plugins/requirements/image-processing/#troubleshooting
 DYLD_FALLBACK_LIBRARY_PATH = "/opt/homebrew/lib:{env:LD_LIBRARY_PATH}"
-# Number of expected test passes, safety measure for accidental skip of
-# tests. Update value if you add/remove tests. (tox-extra)
 FORCE_COLOR = "1"
-# Avoid runtime warning that might affect our devel testing
-# "devel: ANSIBLE_DEVEL_WARNING = false",
 PRE_COMMIT_COLOR = "always"
