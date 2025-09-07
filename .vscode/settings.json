@@ -1,7 +1,10 @@
 {
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff"
+  },
   "cSpell.customDictionaries": {
-    "custom": true, // Enable the `custom` dictionary
-    "internal-terms": false, // Disable the `internal-terms` dictionary
+    "custom": true,
+    "internal-terms": false,
     "project-words": {
       "addWords": true,
       "description": "Words used in this project",
@@ -9,12 +12,20 @@
       "path": "${workspaceRoot}/.config/dictionary.txt"
     }
   },
+  "cSpell.diagnosticLevel": "Error",
+  "editor.codeActionsOnSave": {
+    "source.action.useSortedKeys.biome": "explicit",
+    "source.fixAll.biome": "always",
+    "source.organizeImports.biome": "explicit"
+  },
+  "editor.defaultFormatter": "biomejs.biome",
   "editor.formatOnSave": true,
   "editor.formatOnType": true,
+  "files.associations": {
+    ".github/workflows/*.yml": "github-actions-workflow"
+  },
   "files.exclude": {
     "**/site": true
   },
-  "prettier.enable": true,
-  "prettier.proseWrap": "always",
-  "cSpell.diagnosticLevel": "Error"
+  "prettier.enable": false
 }

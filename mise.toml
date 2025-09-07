@@ -5,4 +5,6 @@ _.python.venv = {create = true, path = ".venv"}
 python.uv_venv_auto = true
 
 [tools]
+biome = "latest"
+github-cli = "latest"
 python = "latest"

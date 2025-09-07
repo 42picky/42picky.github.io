@@ -38,3 +38,14 @@ jobs:
         docs
         lint
     secrets: inherit # needed for logging to the ghcr.io registry
+  deploy:
+    needs: tox
+    name: deploy
+    permissions:
+      contents: write
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: astral-sh/setup-uv@v4
+      - run: uv sync
+      - run: uv run mkdocs gh-deploy --force

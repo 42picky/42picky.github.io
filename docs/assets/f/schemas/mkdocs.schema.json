@@ -5,10 +5,6 @@
   "examples": ["mkdocs.yml"],
   "markdownDescription": "Contribute schema fixes [here](https://github.com/42picky/42picky.github.io). Please do not file bugs.",
   "properties": {
-    "INHERIT": {
-      "title": "Path to file to inherit from default values.",
-      "type": "string"
-    },
     "copyright": {
       "type": "string"
     },
@@ -47,6 +43,10 @@
         "type": "string"
       },
       "type": "array"
+    },
+    "INHERIT": {
+      "title": "Path to file to inherit from default values.",
+      "type": "string"
     },
     "markdown_extensions": {
       "items": {
