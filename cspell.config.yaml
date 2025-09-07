@@ -12,7 +12,5 @@ dictionaries:
 enabled: true
 ignorePaths:
   - cspell.config.yaml
-  # The requirements file
-  - .config/requirements.txt
   # Other
   - "*.svg"
