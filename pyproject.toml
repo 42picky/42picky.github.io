@@ -1,26 +1,129 @@
-# cspell: ignore tomlsort
+# cspell: ignore tomlsort posargs PROGRAMDATA
 
 [build-system]
 build-backend = "setuptools.build_meta"
 requires = [
   "setuptools >= 65.3.0", # required by pyproject+setuptools_scm integration and editable installs
-  "setuptools_scm[toml] >= 7.0.5" # required for "no-local-version" scheme
+  "setuptools_scm[toml] >= 7.0.5", # required for "no-local-version" scheme
+  "tox-uv",
+  "tox>=4.30",
+  "tox-extra>=2.1"
+]
+
+[dependency-groups]
+lint = [
+  "pre-commit>=4.1",
+  "pre-commit-uv>=4.1.4",
+  "pytest>=7.2.2",
+  "setuptools>=51.1.1"
 ]
 
 [project]
-dynamic = ["version", "dependencies", "optional-dependencies"]
+dependencies = [
+  "cairosvg>=2.8.2",
+  "markdown-exec>=1.11.0",
+  "markdown-include>=0.8.1",
+  "mkdocs>=1.6.1",
+  "mkdocs-autorefs>=1.4.3",
+  "mkdocs-git-authors-plugin>=0.10.0",
+  "mkdocs-git-revision-date-localized-plugin>=1.4.7",
+  "mkdocs-material>=9.6.18",
+  "mkdocs-material-extensions>=1.3.1",
+  "mkdocstrings>=0.30.0",
+  "mkdocstrings-python>=1.18.2",
+  "pillow>=11.3.0",
+  "pygments-ansi-color>=0.3.0",
+  "pymdown-extensions>=10.16.1",
+  "slugify>=0.0.1"
+]
+dynamic = ["version"]
 name = "42picky"
 requires-python = ">=3.13"
-
-[tool.setuptools.dynamic]
-dependencies = {file = [".config/requirements.in"]}
 
 [tool.tomlsort]
 in_place = true
 sort_inline_tables = true
 sort_table_keys = true
 
-[tool.uv.pip]
-annotation-style = "line"
-custom-compile-command = "tox run deps"
-no-emit-package = ["pip", "typing_extensions", "uv"]
+[tool.tox]
+env_list = [
+  "lint",
+  "docs",
+  "deps"
+]
+isolated_build = true
+min_version = "4.6.3"
+requires = [
+  "tox>=4.28.4",
+  "tox-extra >= 2.0.1",
+  "tox-uv >= 1.28.0",
+  "setuptools >= 65.3.0" # editable installs
+]
+
+[tool.tox.env.deps]
+commands = [
+  ["pre-commit", "run", "--all-files", "--show-diff-on-failure", "--hook-stage", "manual", "deps"],
+  # Update pre-commit hooks
+  ["pre-commit", "autoupdate"]
+]
+commands_pre = []
+description = "Bump all test dependencies"
+# we reuse the lint environment
+env_dir = "{tox_work_dir}/lint"
+skip_install = true
+
+[tool.tox.env.docs]
+commands = [
+  ["{env_python}", "-m", "mkdocs", {default = ["build", "--strict", "--site-dir=_readthedocs/html/"], extend = true, replace = "posargs"}]
+]
+description = "Builds docs"
+groups = ["docs"]
+skip_install = false
+
+[tool.tox.env.lint]
+commands = [
+  ["pre-commit", "run", "--all-files", "--show-diff-on-failure"]
+]
+commands_pre = []
+dependency_groups = ["lint"]
+description = "Run all linters"
+skip_install = true
+
+[tool.tox.env_run_base]
+description = "Run the tests under {base_python}"
+package = "editable"
+pass_env = [
+  "CURL_CA_BUNDLE", # https proxies, https://github.com/tox-dev/tox/issues/1437
+  "FORCE_COLOR",
+  "HOME",
+  "HOMEPATH",
+  "LANG",
+  "LC_*",
+  "NO_COLOR",
+  "PYTEST_*", # allows developer to define their own preferences
+  "PYTHON*", # PYTHONPYCACHEPREFIX, PYTHONIOENCODING, PYTHONBREAKPOINT,...
+  "PY_COLORS",
+  "PRE_COMMIT_HOME",
+  "PROGRAMDATA",
+  "RUFF_OUTPUT_FORMAT",
+  "RTD_TOKEN",
+  "REQUESTS_CA_BUNDLE", # https proxies
+  "SETUPTOOLS_SCM_DEBUG",
+  "SSL_CERT_FILE", # https proxies
+  "SSH_AUTH_SOCK", # may be needed by git
+  "UV_*"
+]
+
+[tool.tox.env_run_base.set_env]
+# Disable colors until markdown-exec supports it:
+# https://github.com/pawamoy/markdown-exec/issues/11
+# "NO_COLOR = 1",
+# "TERM = dump",
+# https://squidfunk.github.io/mkdocs-material/plugins/requirements/image-processing/#troubleshooting
+DYLD_FALLBACK_LIBRARY_PATH = "/opt/homebrew/lib:{env:LD_LIBRARY_PATH}"
+# Number of expected test passes, safety measure for accidental skip of
+# tests. Update value if you add/remove tests. (tox-extra)
+FORCE_COLOR = "1"
+# Avoid runtime warning that might affect our devel testing
+# "devel: ANSIBLE_DEVEL_WARNING = false",
+PRE_COMMIT_COLOR = "always"

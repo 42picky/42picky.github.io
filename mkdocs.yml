@@ -54,7 +54,8 @@ plugins:
       exclude:
         - index.md
         - tags.md
-  - tags
+  - tags:
+      # tags_hierarchy: true
 
 markdown_extensions:
   - admonition
