@@ -7,6 +7,7 @@ Sorin
 autofix
 autorefs
 autoupdate
+backrefs
 cairosvg
 callouts
 codespell
