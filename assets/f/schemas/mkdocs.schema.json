@@ -1,0 +1,333 @@
+{
+  "$id": "https://42picky.com/assets/f/schemas/mkdocs.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "additionalProperties": false,
+  "examples": ["mkdocs.yml"],
+  "markdownDescription": "Contribute schema fixes [here](https://github.com/42picky/42picky.github.io). Please do not file bugs.",
+  "properties": {
+    "copyright": {
+      "type": "string"
+    },
+    "edit_uri": {
+      "type": "string"
+    },
+    "extra": {
+      "properties": {
+        "generator": {
+          "type": "boolean"
+        },
+        "social": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "icon": {
+                "type": "string"
+              },
+              "link": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "extra_css": {
+      "items": {
+        "title": "Path to CSS file",
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "INHERIT": {
+      "title": "Path to file to inherit from default values.",
+      "type": "string"
+    },
+    "markdown_extensions": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "admonition": { "type": ["object", "null"] },
+          "callouts": { "type": ["object", "null"] },
+          "def_list": { "type": ["object", "null"] },
+          "markdown_include.include": {
+            "properties": { "base_path": { "type": "string" } },
+            "type": ["object", "null"]
+          },
+          "pymdownx.details": { "type": ["object", "null"] },
+          "pymdownx.emoji": { "type": ["object", "null"] },
+          "pymdownx.highlight": { "type": ["object", "null"] },
+          "pymdownx.inlinehilite": { "type": ["object", "null"] },
+          "pymdownx.magiclink": {
+            "properties": {
+              "normalize_issue_symbols": {
+                "type": "boolean"
+              },
+              "repo": {
+                "type": "string"
+              },
+              "repo_url_shortener": {
+                "type": "boolean"
+              },
+              "repo_url_shorthand": {
+                "type": "boolean"
+              },
+              "social_url_shortener": {
+                "type": "boolean"
+              },
+              "social_url_shorthand": {
+                "type": "boolean"
+              },
+              "user": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "pymdownx.snippets": { "type": ["object", "null"] },
+          "pymdownx.superfences": {
+            "properties": {
+              "custom_fences": {
+                "items": {
+                  "properties": {
+                    "class": { "type": "string" },
+                    "format": { "type": "string" },
+                    "name": { "type": "string" }
+                  },
+                  "type": "object"
+                },
+                "type": "array"
+              }
+            },
+            "type": ["object", "null"]
+          },
+          "pymdownx.tabbed": {
+            "properties": { "alternative_style": { "type": "boolean" } },
+            "type": ["object", "null"]
+          },
+          "toc": {
+            "properties": {
+              "permalink": {
+                "type": ["boolean", "string"]
+              },
+              "separator": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": ["object", "string"]
+      },
+      "type": "array"
+    },
+    "nav": {
+      "type": "array"
+    },
+    "plugins": {
+      "default": ["search"],
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "autorefs": {},
+          "gen-files": {
+            "additionalProperties": false,
+            "properties": {
+              "scripts": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              }
+            },
+            "type": ["object", "null"]
+          },
+          "git-authors": {
+            "literate-nav": {
+              "additionalProperties": false,
+              "properties": {
+                "nav_file": {
+                  "type": "string"
+                }
+              },
+              "type": ["object", "null"]
+            },
+            "markdownDescription": "See [options](https://timvink.github.io/mkdocs-git-authors-plugin/options.html)",
+            "mkdocstrings": {},
+            "properties": {
+              "authorship_threshold_percent": {
+                "default": 0,
+                "description": "Default is 0, allowed values between 0 and 100. This option sets the minimum contribution percentage for an author to be included in the list of authors. This can be useful when you have a large number of single line authors who contributed minor spelling fixes, and not major content. This option does not apply if there is only one author.",
+                "type": "number"
+              },
+              "count_empty_lines": {
+                "default": false,
+                "type": "boolean"
+              },
+              "enabled": {
+                "default": true,
+                "type": "boolean"
+              },
+              "exclude": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "fallback_to_empty": {
+                "default": false,
+                "type": "boolean"
+              },
+              "show_contribution": {
+                "default": false,
+                "type": "boolean"
+              },
+              "show_email_address": {
+                "default": true,
+                "type": "boolean"
+              },
+              "show_line_count": {
+                "default": false,
+                "type": "boolean"
+              },
+              "sort_authors_by": {
+                "enum": ["contribution", "name"],
+                "type": "string"
+              }
+            },
+            "search": {
+              "properties": {
+                "lang": {
+                  "default": ["en"],
+                  "items": {
+                    "enum": [
+                      "ar",
+                      "da",
+                      "nl",
+                      "en",
+                      "fi",
+                      "fr",
+                      "de",
+                      "hu",
+                      "it",
+                      "ja",
+                      "no",
+                      "pt",
+                      "ro",
+                      "ru",
+                      "es",
+                      "sv",
+                      "th",
+                      "tr",
+                      "vi"
+                    ],
+                    "type": "string"
+                  },
+                  "markdownDescription": "List of languages to use for search. The first language is used as the default language. The default is `['en']`. See [docs](https://www.mkdocs.org/user-guide/configuration/#lang)",
+                  "type": "array"
+                },
+                "min_search_length": {
+                  "default": 3,
+                  "type": "integer"
+                }
+              },
+              "type": ["object", "null"]
+            },
+            "social": {},
+            "tags": {},
+            "type": ["object", "null"]
+          },
+          "type": ["object", "string"]
+        },
+        "type": "array"
+      },
+      "repo_name": {
+        "type": "string"
+      },
+      "repo_url": {
+        "type": "string"
+      },
+      "site_description": {
+        "type": "string"
+      },
+      "site_dir": {
+        "default": "site",
+        "type": "string"
+      },
+      "site_name": {
+        "type": "string"
+      },
+      "site_url": {
+        "type": "string"
+      },
+      "theme": {
+        "additionalProperties": false,
+        "properties": {
+          "favicon": {
+            "type": "string"
+          },
+          "features": {
+            "items": {
+              "pattern": "(content.action.edit|content.code.annotate|content.code.copy|navigation.footer|navigation.sections|navigation.tabs|navigation.tabs.sticky|navigation.top)",
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "logo": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "palette": {
+            "additionalProperties": false,
+            "items": {
+              "properties": {
+                "accent": {
+                  "type": "string"
+                },
+                "media": {
+                  "type": "string"
+                },
+                "primary": {
+                  "type": "string"
+                },
+                "scheme": {
+                  "type": "string"
+                },
+                "toggle": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "icon": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "watch": {
+        "items": {
+          "title": "Path to watch for changes",
+          "type": "string"
+        },
+        "type": "array"
+      }
+    },
+    "title": "MkDocs config file JSON Schema"
+  }
+}
