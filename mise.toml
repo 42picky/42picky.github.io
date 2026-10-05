@@ -1,5 +1,5 @@
 [env]
-_.python.venv = {create = true, path = ".venv"}
+_.python.venv = { create = true, path = ".venv" }
 
 [settings]
 python.uv_venv_auto = true

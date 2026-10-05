@@ -69,7 +69,7 @@ skip_install = true
 
 [tool.tox.env.docs]
 commands = [
-  ["mkdocs", {default = ["build", "--strict", "--site-dir=_readthedocs/html/"], extend = true, replace = "posargs"}]
+  ["mkdocs", { default = ["build", "--strict", "--site-dir=_readthedocs/html/"], extend = true, replace = "posargs" }]
 ]
 description = "Builds docs"
 groups = ["docs"]
